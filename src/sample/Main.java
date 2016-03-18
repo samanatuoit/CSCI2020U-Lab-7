@@ -9,6 +9,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -26,7 +27,7 @@ public class Main extends Application {
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         Group root = new Group();
         primaryStage.setTitle("Lab 7");
-        Scene scene = new Scene(root, 1000, 700);
+        Scene scene = new Scene(root, 800, 500);
         canvas = new Canvas();
         canvas.widthProperty().bind(primaryStage.widthProperty());
         canvas.heightProperty().bind(primaryStage.heightProperty());
@@ -58,27 +59,45 @@ public class Main extends Application {
         double extentAngle = 0;
         //System.out.println(wordCount.keySet());
         gc.setStroke(Color.BLACK);
+        Font font = new Font("Arial", 14);
+        gc.setFont(font);
         for (String entry : wordCount.keySet()) {
 
             if (entry.equals("FLASH FLOOD")) {
+                gc.setFill(Color.BLACK);
+                gc.strokeRect(100,50,80,40);
+                gc.fillText("FLASH FLOOD",190,75);
                 gc.setFill(Color.AQUA);
-                System.out.println("Doing FLASH FLOOD");
+                gc.fillRect(100,50,80,40);
+
             }
             else if (entry.equals("SEVERE THUNDERSTORM")) {
+                gc.setFill(Color.BLACK);
+                gc.strokeRect(100,130,80,40);
+                gc.fillText("SEVERE THUNDERSTORM",190,155);
                 gc.setFill(Color.GOLD);
-                System.out.println("Doing SEVERE THUNDERSTORM");
+                gc.fillRect(100,130,80,40);
+
             }
             else if (entry.equals("SPECIAL MARINE")) {
+                gc.setFill(Color.BLACK);
+                gc.strokeRect(100,210,80,40);
+                gc.fillText("SPECIAL MARINE",190,235);
                 gc.setFill(Color.DARKORANGE);
-                System.out.println("Doing SPECIAL MARINE");
+                gc.fillRect(100,210,80,40);
+
             }
             else if (entry.equals("TORNADO")) {
+                gc.setFill(Color.BLACK);
+                gc.strokeRect(100,290,80,40);
+                gc.fillText("TORNADO",190,315);
                 gc.setFill(Color.DARKSALMON);
-                System.out.println("Doing TORNADO");
+                gc.fillRect(100,290,80,40);
+
             }
             else {
                 gc.setFill(Color.BLACK);
-                System.out.println("Uhoh gotta a problem here");
+                //System.out.println("Uhoh gotta a problem here");
             }
             extentAngle = wordCount.get(entry);
             extentAngle = extentAngle / wordCountTotal;
@@ -88,11 +107,10 @@ public class Main extends Application {
 
             //System.out.println("wordCount.get(entry) = " + wordCount.get(entry));
             //System.out.println("wordCountTotal = " + wordCountTotal);
-            gc.fillArc(500, 350, 250, 250, startAngle, extentAngle, ArcType.ROUND);
-            gc.strokeArc(500, 350, 250, 250, startAngle, extentAngle, ArcType.ROUND);
+            gc.fillArc(500, 200, 250, 250, startAngle, extentAngle, ArcType.ROUND);
+            gc.strokeArc(500, 200, 250, 250, startAngle, extentAngle, ArcType.ROUND);
             startAngle += extentAngle;
             System.out.println("startAngle = " + startAngle);
-
 
         }
 
