@@ -49,7 +49,7 @@ public class Main extends Application {
         for (int num: wordCount.values()) {
             wordCountTotal += num;
         }
-        System.out.println(wordCountTotal);
+        //System.out.println(wordCountTotal);
 
         //for (int i=0; i<Integer.parseInt(wordCount.keySet();i++) {
             //System.out.println(i);
@@ -57,27 +57,41 @@ public class Main extends Application {
         double startAngle = 0;
         double extentAngle = 0;
         //System.out.println(wordCount.keySet());
+        gc.setStroke(Color.BLACK);
         for (String entry : wordCount.keySet()) {
 
             if (entry.equals("FLASH FLOOD")) {
                 gc.setFill(Color.AQUA);
+                System.out.println("Doing FLASH FLOOD");
             }
             else if (entry.equals("SEVERE THUNDERSTORM")) {
                 gc.setFill(Color.GOLD);
+                System.out.println("Doing SEVERE THUNDERSTORM");
             }
             else if (entry.equals("SPECIAL MARINE")) {
-                gc.setFill(Color.GOLD);
+                gc.setFill(Color.DARKORANGE);
+                System.out.println("Doing SPECIAL MARINE");
             }
             else if (entry.equals("TORNADO")) {
                 gc.setFill(Color.DARKSALMON);
+                System.out.println("Doing TORNADO");
             }
             else {
                 gc.setFill(Color.BLACK);
+                System.out.println("Uhoh gotta a problem here");
             }
-            extentAngle = (wordCount.get(entry) / wordCountTotal) * 360;
+            extentAngle = wordCount.get(entry);
+            extentAngle = extentAngle / wordCountTotal;
+            extentAngle *= 360;
+            System.out.println("extentAngle = " + extentAngle);
+
+
+            //System.out.println("wordCount.get(entry) = " + wordCount.get(entry));
+            //System.out.println("wordCountTotal = " + wordCountTotal);
             gc.fillArc(500, 350, 250, 250, startAngle, extentAngle, ArcType.ROUND);
-            startAngle = extentAngle;
-            System.out.println("Yo");
+            gc.strokeArc(500, 350, 250, 250, startAngle, extentAngle, ArcType.ROUND);
+            startAngle += extentAngle;
+            System.out.println("startAngle = " + startAngle);
 
 
         }
